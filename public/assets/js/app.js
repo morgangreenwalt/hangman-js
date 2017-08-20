@@ -13,22 +13,25 @@ $(document).ready(function() {
         lettersArray = [];
         var randomSelect = Math.floor((Math.random() * words.length));
         selectedWord = words[randomSelect];
-        console.log(selectedWord);
 
         // Have the word appear in "_ _ _"
         blanks = [];
         for (var i = 0; i < selectedWord.length; i++) {
             blanks[i] = "_";
         }
-        console.log(blanks);
     };
 
     function addHTML() {
-        var letters = document.getElementById("letters-guessed");
-        letters.innerHTML = lettersArray;
-
         var life = document.getElementById("lives");
-        life.innerHTML = lives;
+        life.innerHTML = "Guesses Remaining: " + lives;
+
+        var word = document.getElementById("word");
+        var prettyWord = blanks.join(" ");
+        word.innerHTML = prettyWord;
+
+        var letters = document.getElementById("letters-guessed");
+        var prettyLetters = lettersArray.join(" ");
+        letters.innerHTML = "Letters Guessed: <br><br>" + prettyLetters;
     };
 
     startAndReset();
@@ -40,25 +43,19 @@ $(document).ready(function() {
             var userChoice = event.key;
             lives--;
             gameOver();
-            console.log(userChoice);
-            console.log(lives);
 
             var checkLetter = selectedWord.indexOf(userChoice);
-            console.log(checkLetter);
 
             if (checkLetter === -1) {
                 lettersArray.push(userChoice);
                 addHTML();
-                console.log(lettersArray);
-
 
             } else {
                 for (var i = 0; i < selectedWord.length; i++) {
                     blanks[checkLetter] = userChoice;
                     blanks[selectedWord.lastIndexOf(userChoice)] = userChoice;
-
                 }
-                console.log(blanks);
+                addHTML();
             }
         };
     };
