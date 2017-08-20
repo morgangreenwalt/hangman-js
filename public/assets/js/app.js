@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Variables
-    var lives = 10;
+    var lives = 12;
     var lettersArray = [];
     var correctGuess;
     var wins = 0;
@@ -54,11 +54,11 @@ $(document).ready(function() {
         if (lives === -1) {
             alert("No more guesses remaining. Try again!");
             startAndReset();
-            lives = 10;
+            lives = 12;
         } else if (blanks.includes("_") === false) {
             alert("You win! Come back for more.");
             startAndReset();
-            lives = 10;
+            lives = 12;
         }
 
     }
